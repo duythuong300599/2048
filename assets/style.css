@@ -10,6 +10,42 @@ h1 {
   padding-top: 20px;
 }
 
+.modal {
+  position: fixed;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  max-width: 600px;
+  height: 200px;
+  background-color: #ccc;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border-radius: 20px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+#btn-try-again {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0);
+  padding: 10px;
+  color: rgb(128, 46, 46);
+}
+
+p {
+  font-size: 48px;
+  margin: 20px 0;
+}
+
+.open {
+  display: flex;
+}
+
 .container {
   text-align: center;
   width: 100%;

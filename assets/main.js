@@ -5,6 +5,8 @@ var touchStart;
 var touchEnd;
 const score = localStorage.getItem("score") || 0;
 document.getElementById("best-score").innerHTML = score;
+const btn = document.getElementById("btn-try-again");
+const modal = document.querySelector(".modal");
 
 window.onload = function () {
   loadGames();
@@ -63,7 +65,7 @@ function hasEmptyTitle() {
 
 function randomNumberTwo() {
   if (!hasEmptyTitle()) {
-    alert("Your Lose");
+    modal.classList.add("open");
     return;
   }
 
@@ -229,3 +231,23 @@ function slideDown() {
     }
   }
 }
+
+const tryAgain = () => {
+  board = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+  ];
+
+  for (var r = 0; r < rows; r++) {
+    for (var c = 0; c < columns; c++) {
+      document.getElementById(r.toString() + "-" + c.toString())?.remove();
+    }
+  }
+  document.getElementById("score").innerHTML = 0;
+  loadGames();
+  modal.classList.remove("open");
+};
+
+btn.addEventListener("click", tryAgain);
