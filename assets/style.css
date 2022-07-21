@@ -98,3 +98,15 @@ body {
   color: #fff;
   background-color: #ff2020;
 }
+
+@media screen and (max-width: 768px) {
+  .game-screen {
+    width: 332px;
+    height: 332px;
+  }
+
+  .item {
+    width: 80px;
+    height: 80px;
+  }
+}
