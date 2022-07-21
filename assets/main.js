@@ -3,10 +3,13 @@ var rows = 4;
 var columns = 4;
 var touchStart;
 var touchEnd;
+const score = localStorage.getItem("score") || 0;
+document.getElementById("best-score").innerHTML = score;
 
 window.onload = function () {
   loadGames();
 };
+
 const screenGame = document.querySelector(".game-screen");
 
 function loadGames() {
@@ -27,9 +30,24 @@ function loadGames() {
       document.querySelector(".game-screen").append(item);
     }
   }
+  randomNumberTwo();
+  randomNumberTwo();
+}
 
-  randomNumberTwo();
-  randomNumberTwo();
+function Score() {
+  var max = board[0][0];
+  for (var r = 0; r < rows; r++) {
+    for (var c = 0; c < columns; c++) {
+      if (max < board[r][c]) {
+        max = board[r][c];
+      }
+    }
+  }
+
+  document.getElementById("score").innerHTML = max;
+  const bestScore = max > score ? max : score;
+  document.getElementById("best-score").innerHTML = bestScore;
+  localStorage.setItem("score", bestScore);
 }
 
 function hasEmptyTitle() {
@@ -96,6 +114,7 @@ document.addEventListener("keyup", (e) => {
     slideDown();
     randomNumberTwo();
   }
+  Score();
 });
 
 screenGame.addEventListener("touchstart", (e) => {
@@ -103,13 +122,10 @@ screenGame.addEventListener("touchstart", (e) => {
 });
 
 screenGame.addEventListener("touchend", (e) => {
-  console.log(e);
   touchEnd = [e.changedTouches[0].screenX, e.changedTouches[0].screenY];
   let X = touchEnd[0] - touchStart[0];
   let Y = touchEnd[1] - touchStart[1];
   let sub = X - Y;
-  console.log(X, Y);
-  console.log(sub);
   if (Y <= 0 && sub > 0) {
     slideUp();
     randomNumberTwo();
